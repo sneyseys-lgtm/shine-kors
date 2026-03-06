@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHINE.KORS — Женская одежда и аксессуары</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray: #888888;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--black);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 1px;
+            background: var(--black);
+            transition: 0.3s;
+        }
+
+        /* Герой-секция */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 400;
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 1rem 3rem;
+            border: 1px solid var(--black);
+            color: var(--black);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.4s;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .hero-btn:hover {
+            background: var(--black);
+            color: var(--white);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=800&q=80') center/cover;
+            filter: grayscale(100%);
+            opacity: 0.9;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Новинки */
+        .new-arrivals {
+            padding: 8rem 5%;
+            background: var(--white);
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 4rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            group: true;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 400px;
+            background: var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: transform 0.6s, filter 0.6s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+            filter: grayscale(0%);
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--black);
+            color: var(--white);
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .product-info {
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .product-price {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Каталог по категориям */
+        .categories {
+            padding: 8rem 5%;
+            background: var(--light-gray);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            cursor: pointer;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .category-bg {
+            position: absolute;
+            inset: 0;
+            background: var(--black);
+            transition: transform 0.6s;
+        }
+
+        .category-card:hover .category-bg {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            z-index: 2;
+        }
+
+        .category-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .category-count {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        /* О нас */
+        .about {
+            padding: 8rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .about-image {
+            height: 600px;
+            background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80') center/cover;
+            filter: grayscale(100%);
+        }
+
+        .about-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Контакты */
+        .contact {
+            padding: 8rem 5%;
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            color: #aaa;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .social-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--white);
+            transition: transform 0.3s;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        .social-link:hover .social-icon {
+            background: var(--white);
+            color: var(--black);
+            border-color: var(--white);
+        }
+
+        .social-label {
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-info p {
+            color: #888;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        /* Футер */
+        footer {
+            padding: 2rem 5%;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--gray);
+            border-top: 1px solid #eee;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .category-card {
+                height: 300px;
+            }
+            
+            .hero-image {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: flex;
+            }
+            
+            .about {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                height: 400px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+
+        /* Плавная прокрутка */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-gray);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--black);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav>
+        <div class="logo">shine.kors</div>
+        <ul class="nav-links">
+            <li><a href="#new">Новинки</a></li>
+            <li><a href="#catalog">Каталог</a></li>
+            <li><a href="#about">О нас</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+        <div class="mobile-menu" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Герой-секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>SHINE.KORS</h1>
+            <p>Элегантность в каждой детали</p>
+            <a href="#catalog" class="hero-btn">Смотреть коллекцию</a>
+        </div>
+        <div class="hero-image"></div>
+    </section>
+
+    <!-- Новинки -->
+    <section class="new-arrivals" id="new">
+        <h2 class="section-title">Новое поступление</h2>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                    <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&q=80" alt="Платье">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Шёлковое платье</h3>
+                    <p class="product-price">12 900 ₽</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                    <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Сумка">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Кожаная сумка</h3>
+                    <p class="product-price">8 500 ₽</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                    <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80" alt="Туфли">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Классические лодочки</h3>
+                    <p class="product-price">6 900 ₽</p>
+                </div>
+            </div>
+            
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                    <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=80" alt="Пальто">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Шерстяное пальто</h3>
+                    <p class="product-price">24 500 ₽</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Каталог -->
+    <section class="categories" id="catalog">
+        <h2 class="section-title">Категории</h2>
+        <div class="categories-grid">
+            <a href="#" class="category-card">
+                <div class="category-bg" style="background: url('https://images.unsplash.com/photo-1485968579169-a6e9dc7c8f1a?w=600&q=80') center/cover; filter: grayscale(100%);"></div>
+                <div class="category-content">
+                    <h3 class="category-name">Одежда</h3>
+                    <span class="category-count">45 товаров</span>
+                </div>
+            </a>
+            
+            <a href="#" class="category-card">
+                <div class="category-bg" style="background: url('https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80') center/cover; filter: grayscale(100%);"></div>
+                <div class="category-content">
+                    <h3 class="category-name">Сумки</h3>
+                    <span class="category-count">23 товара</span>
+                </div>
+            </a>
+            
+            <a href="#" class="category-card">
+                <div class="category-bg" style="background: url('https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&q=80') center/cover; filter: grayscale(100%);"></div>
+                <div class="category-content">
+                    <h3 class="category-name">Обувь</h3>
+                    <span class="category-count">18 товаров</span>
+                </div>
+            </a>
+            
+            <a href="#" class="category-card">
+                <div class="category-bg" style="background: url('https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80') center/cover; filter: grayscale(100%);"></div>
+                <div class="category-content">
+                    <h3 class="category-name">Бельё</h3>
+                    <span class="category-count">32 товара</span>
+                </div>
+            </a>
+            
+            <a href="#" class="category-card">
+                <div class="category-bg" style="background: url('https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80') center/cover; filter: grayscale(100%);"></div>
+                <div class="category-content">
+                    <h3 class="category-name">Аксессуары</h3>
+                    <span class="category-count">56 товаров</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- О нас -->
+    <section class="about" id="about">
+        <div class="about-image"></div>
+        <div class="about-content">
+            <h2>О бренде</h2>
+            <p>SHINE.KORS — это пространство, где минимализм встречается с женственностью. Мы создаём базовый гардероб для современных женщин, ценящих качество и эстетику.</p>
+            <p>Каждая вещь в нашей коллекции тщательно отобрана: натуральные ткани, безупречный крой, актуальный дизайн. Мы верим, что стиль — это не количество вещей в шкафу, а умение выбирать.</p>
+            <p>Присоединяйтесь к нашему сообществу в Instagram и Telegram — там мы делимся вдохновением, анонсами новинок и специальными предложениями.</p>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section class="contact" id="contact">
+        <h2>Свяжитесь с нами</h2>
+        <p class="contact-text">Заказы принимаем через социальные сети. Напишите нам — поможем с выбором размера, расскажем о наличии и оформим заказ.</p>
+        
+        <div class="social-links">
+            <a href="https://t.me/your_telegram" class="social-link" target="_blank">
+                <div class="social-icon">✈</div>
+                <span class="social-label">Telegram</span>
+            </a>
+            
+            <a href="https://instagram.com/your_instagram" class="social-link" target="_blank">
+                <div class="social-icon">📷</div>
+                <span class="social-label">Instagram</span>
+            </a>
+            
+            <a href="https://wa.me/your_whatsapp" class="social-link" target="_blank">
+                <div class="social-icon">💬</div>
+                <span class="social-label">WhatsApp</span>
+            </a>
+        </div>
+        
+        <div class="contact-info">
+            <p>Email: hello@shinekors.ru</p>
+            <p>Работаем ежедневно с 10:00 до 20:00 (МСК)</p>
+            <p>Доставка по всей России</p>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <p>&copy; 2024 SHINE.KORS. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Плавное появление элементов при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card, .category-card').forEach(el => {
+            el.style.opacity = "0";
+            el.style.transform = "translateY(30px)";
+            el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+            observer.observe(el);
+        });
+
+        // Мобильное меню
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+            nav.style.position = 'absolute';
+            nav.style.top = '100%';
+            nav.style.left = '0';
+            nav.style.right = '0';
+            nav.style.flexDirection = 'column';
+            nav.style.background = 'white';
+            nav.style.padding = '2rem';
+            nav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+        }
+    </script>
+
+</body>
+</html>
