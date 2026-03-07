@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Как заказать — SHINE.KORS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0a0a;
+            --white: #ffffff;
+            --gray: #888888;
+            --light-gray: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--black);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
+
+        .page-header {
+            margin-top: 100px;
+            padding: 6rem 5%;
+            text-align: center;
+            background: var(--light-gray);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .steps-section {
+            padding: 6rem 5%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 400;
+            color: var(--gray);
+            opacity: 0.3;
+            line-height: 1;
+            min-width: 80px;
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .step-content p {
+            color: var(--gray);
+            line-height: 1.8;
+        }
+
+        .contact-section {
+            padding: 4rem 5%;
+            background: var(--black);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border: 1px solid var(--white);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: var(--white);
+            color: var(--black);
+        }
+
+        footer {
+            padding: 3rem 5%;
+            text-align: center;
+            background: var(--white);
+            border-top: 1px solid #eee;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .step {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .step-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">shine.kors</a>
+        <ul class="nav-links">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="odegda.html">Одежда</a></li>
+            <li><a href="sumki.html">Сумки</a></li>
+            <li><a href="obuv.html">Обувь</a></li>
+            <li><a href="belio.html">Бельё</a></li>
+            <li><a href="aksessuary.html">Аксессуары</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>Как заказать</h1>
+        <p>Простая схема работы без онлайн-оплаты. Выбираете — связываетесь — забираете.</p>
+    </header>
+
+    <section class="steps-section">
+        
+        <div class="step">
+            <div class="step-number">01</div>
+            <div class="step-content">
+                <h3>Выберите товар на сайте</h3>
+                <p>Просмотрите каталог на сайте или в наших социальных сетях. Все актуальные цены и наличие указаны на страницах товаров. Если нужна консультация по размеру или материалу — пишите, поможем.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">02</div>
+            <div class="step-content">
+                <h3>Напишите нам</h3>
+                <p>Свяжитесь через удобный мессенджер: Telegram, Instagram или WhatsApp. Укажите название товара, размер и цвет. Менеджер ответит в течение часа в рабочее время.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">03</div>
+            <div class="step-content">
+                <h3>Подтвердите наличие</h3>
+                <p>Мы проверим, есть ли товар в нужном размере, и пришлем дополнительные фото или видео при необходимости. Зарезервируем вещь на 24 часа.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-number">04</div>
+            <div class="step-content">
+                <h3>Заберите заказ</h3>
+                <p>Оплатите при получении. Доступные способы: самовывоз из шоурума (по договоренности), встреча в центре города или отправка курьером с оплатой при получении.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="contact-section">
+        <h2>Готовы сделать заказ?</h2>
+        <div class="contact-buttons">
+            <a href="https://t.me/shinekors" class="contact-btn" target="_blank">Telegram</a>
+            <a href="https://instagram.com/shine.kors?igsh=eWFhdGN2czhlbW4y" class="contact-btn" target="_blank">Instagram</a>
+            <a href="https://wa.me/79963441559" class="contact-btn" target="_blank">WhatsApp</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">shine.kors</div>
+        <p style="color: var(--gray); font-size: 0.85rem;">© 2024 SHINE.KORS</p>
+    </footer>
+
+</body>
+</html>
